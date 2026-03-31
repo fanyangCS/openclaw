@@ -46,26 +46,16 @@ function resolveFlowBlockedSummary(
   return task.terminalSummary?.trim() || task.progressSummary?.trim() || undefined;
 }
 
-type FlowRecordPatch = Partial<
-  Pick<
-    FlowRecord,
-    | "status"
-    | "notifyPolicy"
-    | "goal"
-    | "currentStep"
-    | "waitingOnTaskId"
-    | "outputs"
-    | "blockedTaskId"
-    | "blockedSummary"
-    | "updatedAt"
-    | "endedAt"
-  >
-> & {
+type FlowRecordPatch = {
+  status?: FlowStatus;
+  notifyPolicy?: TaskNotifyPolicy;
+  goal?: string;
   currentStep?: string | null;
   waitingOnTaskId?: string | null;
   outputs?: FlowOutputBag | null;
   blockedTaskId?: string | null;
   blockedSummary?: string | null;
+  updatedAt?: number;
   endedAt?: number | null;
 };
 
